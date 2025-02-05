@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class RectangleClass:
+public class RectangleClass{
 	private double length;
 	private double width;
 	public SimpleRectangle():
@@ -26,4 +26,4 @@ public class RectangleClass:
 		Width = NewWidth;
 	
 		
-	
+}
