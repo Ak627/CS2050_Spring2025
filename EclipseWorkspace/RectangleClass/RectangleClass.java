@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class RectangleClass:
-	double length;
-	double width;
+	private double length;
+	private double width;
 	public SimpleRectangle():
 		lenght = 3;
 		width = 5;
@@ -15,14 +15,14 @@ public class RectangleClass:
 		length = NewLength;
 		width = NewWidth;
 	
-	private double getArea():
+	public double getArea():
 		return length*width;
-	private double getPerimeter():
+	public double getPerimeter():
 		return 2*(length*width);
 	
-	private void setLength(double NewLength):
+	public void setLength(double NewLength):
 		length = NewLength;
-	private void setWidth(double NewWidth):
+	public void setWidth(double NewWidth):
 		Width = NewWidth;
 	
 		
