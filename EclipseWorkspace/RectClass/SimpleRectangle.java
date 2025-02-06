@@ -1,12 +1,12 @@
-public class RectangleClass{
+public class SimpleRectangle{
 	private double length;
 	private double width;
-	public RectangleClass(){
+	public SimpleRectangle(){
 		length = 3;
 		width = 5;
 	}
 		
-	public RectangleClass(double NewLength, double NewWidth) {
+	public SimpleRectangle(double NewLength, double NewWidth) {
 		if (NewLength <= 0) {
 			NewLength = 1;
 		}
