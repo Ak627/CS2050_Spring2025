@@ -48,3 +48,21 @@ class Bear extends Animal{
 		super(name, food, weight, sleep, location);
 	}
 }
+
+class Elephant extends Animal{
+	public Elephant(String name, String food, int weight, int sleep, String location) {
+		super(name, food, weight, sleep, location);
+	}
+}
+
+class Monkey extends Animal{
+	public Monkey(String name, String food, int weight, int sleep, String location) {
+		super(name, food, weight, sleep, location);
+	}
+}
+
+class Sloth extends Animal{
+	public Sloth(String name, String food, int weight, int sleep, String location) {
+		super(name, food, weight, sleep, location);
+	}
+}
