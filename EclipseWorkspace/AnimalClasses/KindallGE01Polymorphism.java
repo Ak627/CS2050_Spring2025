@@ -69,6 +69,11 @@ class Elephant extends Animal{
 	public Elephant(String name, String food, int weight, int sleep, String location) {
 		super(name, food, weight, sleep, location);
 	}
+	
+	@Override
+	public void sleep() {
+		System.out.println("Elephant sleeps.");
+	}
 }
 
 class Monkey extends Animal{
