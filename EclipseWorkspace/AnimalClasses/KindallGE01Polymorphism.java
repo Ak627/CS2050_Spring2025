@@ -47,7 +47,23 @@ class Bear extends Animal{
 	public Bear(String name, String food, int weight, int sleep, String location) {
 		super(name, food, weight, sleep, location);
 	}
+	
+	@Override
+	public void eat() {
+		System.out.println("Bear eats.");
+	}
+	
+	@Override
+	public void sleep() {
+		System.out.println("Bear sleeps.");
+	}
+	
+	@Override
+	public void swim() {
+		System.out.println("Bear swims.");
+	}
 }
+
 
 class Elephant extends Animal{
 	public Elephant(String name, String food, int weight, int sleep, String location) {
