@@ -80,6 +80,15 @@ class Monkey extends Animal{
 	public Monkey(String name, String food, int weight, int sleep, String location) {
 		super(name, food, weight, sleep, location);
 	}
+	@Override
+	public void eat() {
+		System.out.println("Monkey eats.");
+	}
+	
+	@Override
+	public void swim() {
+		System.out.println("Monkey swims.");
+	}
 }
 
 class Sloth extends Animal{
