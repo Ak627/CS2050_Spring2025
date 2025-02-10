@@ -41,3 +41,10 @@ class Animal{
 		System.out.println("Animal swims");
 	}
 }
+
+
+class Bear extends Animal{
+	public Bear(String name, String food, int weight, int sleep, String location) {
+		super(name, food, weight, sleep, location);
+	}
+}
