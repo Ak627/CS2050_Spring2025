@@ -67,6 +67,7 @@ public class Test{
                 currentAnimal.eat();
                 currentAnimal.sleep();
                 currentAnimal.swim();
+                System.out.println();
             }
 
             scanner.close();
