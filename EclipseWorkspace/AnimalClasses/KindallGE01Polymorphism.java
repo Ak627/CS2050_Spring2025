@@ -43,7 +43,7 @@ class Animal{
 	
 	@Override
     public String toString() {
-        return "Name: " + name + ", Weight: " + weight + "kg, Sleep: " + sleep + " hours, Location: " + location;
+        return "Name: " + name + " - Weight: " + weight + "kg - Sleep: " + sleep + " hours - Location: " + location;
 }
 }
 
