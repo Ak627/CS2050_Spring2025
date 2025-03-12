@@ -7,6 +7,8 @@ public class BirdLab{
 	interface canSwim{
 		public int swimTrue();
 	}
+	
+	
 	abstract class Bird{
 		private String name;
 		private int swimSpeed;
