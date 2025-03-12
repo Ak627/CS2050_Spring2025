@@ -1,7 +1,18 @@
+import java.util.ArrayList;
+
 public class BirdLab{
 	public static void main(String [] args) {
-		
+		ArrayList<Bird> birds = new ArrayList<>();
 	}
+	
+	public void DisplayAllBirds(ArrayList<Bird> birds) {
+		for(int i = 0; i < birds.size(); i++) {
+			birds.get(i).nameType();
+			birds.get(i).funFact();
+		}
+	}
+	
+
 	
 	
 	interface canSwim{
