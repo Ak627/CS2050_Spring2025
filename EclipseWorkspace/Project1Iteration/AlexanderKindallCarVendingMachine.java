@@ -11,7 +11,7 @@ public class Car{
 	private String CarType;
 	private double price;
 	private int year;
-	public Car(String CarBrand, String CarType, double price, int year) {
+	public Car(String CarBrand, String CarType, int year, double price) {
 		this.CarBrand = CarBrand;
 		this.CarType = CarType;
 		this.price = price;
