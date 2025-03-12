@@ -42,5 +42,40 @@ public class BirdLab{
 		}
 	}
 	
+	class Duck extends Bird implements canSwim{
+		public Duck(String name, int swimSpeed) {
+			super(name, swimSpeed);
+		}
+		
+		@Override
+		public void funFact() {
+			System.out.println();
+		}
+		@Override
+		public int swimTrue() {
+			return super.swimSpeed;
+		}
+		
+	}
+	class SootyTern extends Bird{
+		public SootyTern(String name, int swimSpeed) {
+			super(name, swimSpeed);
+		}
+		
+		@Override
+		public void funFact() {
+			System.out.println();
+		}
+	}
+	class Ostrich extends Bird{
+		public Ostrich(String name, int swimSpeed) {
+			super(name, swimSpeed);
+		}
+		
+		@Override
+		public void funFact() {
+			System.out.println();
+		}
+	}
 	
 }
