@@ -9,6 +9,10 @@ public class BirdLab{
 	}
 	abstract class Bird{
 		
+		
+		abstract void nameType();
+		abstract void funFact();
 	}
+	
 	
 }
