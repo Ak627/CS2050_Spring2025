@@ -26,9 +26,9 @@ public class Car{
 }
 
 public class VendingMachine{
-	private Car cars[];
-	public VendingMachine(Car cars[]) {
-		this.cars = cars;
+	
+	public VendingMachine() {
+		
 	}
 	
 	
