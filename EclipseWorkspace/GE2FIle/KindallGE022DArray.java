@@ -17,17 +17,25 @@ public class KindallGE022DArray{
 		  }
 		  
 	  }
-	  for(int i =0; i < cars.length; i ++) {
-		  for(int j = 0; j< cars[i].length; j ++) {
-			  cars[i][j].printMake();  
-		  }
-	  }
+	  tablePrint(cars);
 	  
 	  input.close();
   }
   
   
+  
+  public static void tablePrint(Car[][] cars) {
+		for(int i =0; i < cars.length; i ++) {//iterates through the rows of cars
+			  for(int j = 0; j< cars[i].length; j ++) {//iterates through the columns of cars
+				  cars[i][j].printMake(); //calls the car objects printMake method
+			  }
+			  System.out.println();//after the first row is finished put a space down to make a table.
+		  }
+	}
+
 }
+
+
 class Car{
 	private String make;
 
