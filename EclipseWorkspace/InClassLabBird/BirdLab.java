@@ -1,13 +1,26 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.*;
 
 public class BirdLab{
-	public static void main(String [] args) {
-		ArrayList<Bird> birds = new ArrayList<>();
+	public static void main(String [] args) throws FileNotFoundException {
+		String birdFile = "BirdFile.txt";
+		Scanner scanner = new Scanner(new File(birdFile));
+		int MaxBird =  Integer.parseInt(scanner.next());
+		scanner.nextLine();
+		ArrayList<Bird> birds = new ArrayList<>(MaxBird);
+		for(int i = 0; i < birds.size(); i++) {
+			String type = scanner.nextLine();
+			String name = scanner.nextLine();
+			int sSpeed = scanner.nextInt();
+			scanner.nextLine();
+			
+		}
+		DisplayAllBirds(birds);
+		scanner.close();
 	}
 	
-	public void DisplayAllBirds(ArrayList<Bird> birds) {
+	public static void DisplayAllBirds(ArrayList<Bird> birds) {
 		for(int i = 0; i < birds.size(); i++) {
 			birds.get(i).nameType();
 			birds.get(i).funFact();
