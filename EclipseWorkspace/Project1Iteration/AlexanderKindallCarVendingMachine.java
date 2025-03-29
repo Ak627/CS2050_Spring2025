@@ -1,14 +1,34 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AlexanderKindallCarVendingMachine{
 
-public static void main(String [] args) {
-	System.out.println("hello world!");
+public static void main(String [] args) throws FileNotFoundException{
+	VendingMachine VM = new VendingMachine();
+	Scanner fileScanner = new Scanner(new File("cars1.txt"));
+	while (fileScanner.hasNextLine()) {
+		int x = Integer.parseInt(fileScanner.next());
+		int y = Integer.parseInt(fileScanner.next());
+		fileScanner.nextLine();
+		String brand = fileScanner.next();
+		String type = fileScanner.next();
+		int year = Integer.parseInt(fileScanner.next());
+		fileScanner.nextLine();
+		double price = Double.parseDouble(fileScanner.next());
+		fileScanner.nextLine();
+        VM.addCar(new Car(x,y, brand, type, year, price));
+    }
+	fileScanner.close();
+	boolean exit = false;
+	while(exit != true) {
+		
+	}
 }
 
 
 
-public class Car{
+public static class Car{
 	private String CarBrand;
 	private String CarType;
 	private double price;
@@ -31,7 +51,7 @@ public class Car{
 
 }
 
-public class VendingMachine{
+public static class VendingMachine{
 	private Car floors[][];
 	public VendingMachine() {
 		System.out.println("Vending Machine Created");
