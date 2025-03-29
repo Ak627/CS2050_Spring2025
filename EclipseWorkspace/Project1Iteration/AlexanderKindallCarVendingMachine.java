@@ -5,8 +5,9 @@ import java.io.FileNotFoundException;
 public class AlexanderKindallCarVendingMachine{
 
 public static void main(String [] args) throws FileNotFoundException{
+	int fileChoice = 1;
 	VendingMachine VM = new VendingMachine();
-	Scanner fileScanner = new Scanner(new File("cars1.txt"));
+	Scanner fileScanner = new Scanner(new File("cars" + fileChoice +".txt"));
 	while (fileScanner.hasNextLine()) {
 		int x = Integer.parseInt(fileScanner.next());
 		int y = Integer.parseInt(fileScanner.next());
