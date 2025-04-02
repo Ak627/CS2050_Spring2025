@@ -112,7 +112,28 @@ class DoublyLinkedListL18
 	public void deleteNode(int data)
 	{
 		// Implement this
-		System.out.println("Implement delete node:");
+		System.out.println("Delete node:");
+		if(head == null) {
+			return;
+		}else {
+			if(head.data == data) {
+				head = head.next;
+				head.prev = null;
+				return;
+			}
+		}
+		NodeL18 current = head;
+		NodeL18 temp;
+		while(current != null) {
+			if(current.data == data) {
+				temp = current.prev;
+				temp.next = current.next;
+				if(current.next != null) {
+					current.next.prev = temp;
+					current = null;
+				}
+			}
+		}
 	}
 
 	// Students must complete this method
@@ -126,6 +147,17 @@ class DoublyLinkedListL18
 	public void printBackward()
 	{
 		// Implement this
-		System.out.println("Implement printbackward:");
+		System.out.print("Printbackward: ");
+		NodeL18 current = head;
+		while(current.next != null) {
+			current = current.next;
+		}
+		
+		while(current != null) {
+			System.out.print(current.data + " ⇄ ");
+			current = current.prev;
+		}
+		System.out.print("null");
+		
 	}
 }
