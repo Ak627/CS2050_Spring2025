@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 public class AlexanderKindallCarVendingMachine{
 
 public static void main(String [] args) throws FileNotFoundException, InputMismatchException{
-	int fileChoice = 1;
 	Scanner UserInput = new Scanner(System.in);
 	System.out.println("Enter the number of floors for the car vending machine: ");
 	int rows = UserInput.nextInt();
@@ -26,43 +25,50 @@ public static void main(String [] args) throws FileNotFoundException, InputMisma
 		System.out.println("6. Exit");
 		System.out.println("Enter your Choice: ");
 		int choice = UserInput.nextInt();
+		UserInput.nextLine();
 		switch(choice) {
 		case 1:
-			UserInput.nextLine();
 			System.out.println("Enter the file name: ");
 			String fileName = UserInput.nextLine();
 			Scanner fileScanner = new Scanner(new File(fileName));
 			while (fileScanner.hasNextLine()) {
-				int x = Integer.parseInt(fileScanner.next());
-				int y = Integer.parseInt(fileScanner.next());
-				fileScanner.nextLine();
-				String brand = fileScanner.next();
-				String type = fileScanner.next();
-				int year = Integer.parseInt(fileScanner.next());
-				fileScanner.nextLine();
-				double price = Double.parseDouble(fileScanner.next());
-				fileScanner.nextLine();
+				String line = fileScanner.nextLine();
+				String[] data = line.split("\\s+");
+				
+				int x = Integer.parseInt(data[0]);
+		        int y = Integer.parseInt(data[1]);
+		        int year = Integer.parseInt(data[2]);
+		        double price = Double.parseDouble(data[3]);
+		        String brand = data[4];
+		        String type = data[5];
+		        
 		        VM.addCar(new Car(x,y, brand, type, year, price));
 		    }
 			fileScanner.close();
+			break;
 		case 2:
 			VM.showVendingMachine();
+			break;
 		case 3:
 			System.out.println("Where would you like to retrieve the car from?");
 			int posX = UserInput.nextInt();
 			int posY = UserInput.nextInt();
 			UserInput.nextLine();
 			VM.retrieveCar(posX, posY);
+			break;
 		case 4:
 			VM.sortCar(1);
+			break;
 		case 5:
 			VM.sortCar(0);
+			break;
 		case 6:
 			System.out.println("GoodBye!");
 			exit = true;
+			break;
 		default:
 			System.out.println("Invalid input! Try again!");
-			
+			break;
 		}
 	}
 	UserInput.close();
@@ -97,40 +103,48 @@ public static class VendingMachine{
 		floors = new Car[x][y];
 	}
 	public void addCar(Car carObj) {
-		if (floors[carObj.x][carObj.y] == null){
-			floors[carObj.x][carObj.y] = carObj;
-		}
-		else {
-			System.out.println("Car already in position: Row[" + carObj.x + "] Collumn[" + carObj.y + "]");
-		}
+		if (carObj.x >= floors.length || carObj.y >= floors[0].length) {
+	        System.out.println("Cannot add " + carObj.CarBrand + " " + carObj.CarType + " to non-existent Slot");
+	    } else {
+	        // Check if the position is already occupied
+	        if (floors[carObj.x][carObj.y] == null) {
+	            floors[carObj.x][carObj.y] = carObj;  // Add car to the slot
+	        } else {
+	            System.out.println("Cannot add " + carObj.CarBrand + " " + carObj.CarType + " Car already in position: Row[" + carObj.x + "] Column[" + carObj.y + "]");
+	        }
+	    }
 	}
 	
 	public void retrieveCar(int x, int y) {
-		if(floors[x][y] != null) {
-		System.out.println("Car at position [" + x + "][" + y + "] is a " 
-							+ floors[x][y].getBrand() + "," 
-							+ floors[x][y].getType());
-		}
-		else {
-			System.out.println("There is no car at position [" + x + "][" + y + "]");
+		if (x >= floors.length || y >= floors[0].length) {
+			System.out.println("Car slot does not exist!");
+		}else {
+			if(floors[x][y] != null) {
+			System.out.println("Car at position [" + x + "][" + y + "] is a " 
+								+ floors[x][y].getBrand() + " " 
+								+ floors[x][y].getType());
+			}
+			else {
+				System.out.println("There is no car at position [" + x + "][" + y + "]");
+			}
 		}
 		
 	}
 
 	public void showVendingMachine() {
 		for(int i = 0; i < floors.length; i ++) {
-			System.out.println("Floor " + i+1 + ":");
+			System.out.println("Floor " + i + ":");
 			System.out.println();
 			for(int j = 0; j < floors[i].length; j++) {
 				if(floors[i][j] != null) {
-					System.out.println("Space " + j+1 + ": " 
+					System.out.println("Space " + j + ": " 
 							+ floors[i][j].getBrand() + " " 
 							+ floors[i][j].getType() + " "
 							+ floors[i][j].getYear() + " - $"
 							+ floors[i][j].getPrice());
 				}
 				else {
-					System.out.println("Space " + j+1 + ": EMPTY");
+					System.out.println("Space " + j + ": EMPTY");
 				}
 				System.out.println();
 			}
@@ -141,18 +155,34 @@ public static class VendingMachine{
 	public void sortCar(int choice) {
 		int rows = floors.length;
 		int columns = floors[0].length;
-		Car [] sortedArray = new Car[rows * columns];
+		// Count the number of non-null elements first
+		int nonNullCount = 0;
+		for (int i = 0; i < rows; i++) {
+		    for (int j = 0; j < columns; j++) {
+		        if (floors[i][j] != null) {
+		            nonNullCount++;
+		        }
+		    }
+		}
+
+		// Create a new array with the exact size needed
+		Car[] sortedArray = new Car[nonNullCount];
 		int index = 0;
-        for (int i = 0; i < rows; i ++) {
-            for (int j = 0; j < columns; j++) {
-                sortedArray[index++] = floors[i][j];
-            }
-        }
+
+		for (int i = 0; i < rows; i++) {
+		    for (int j = 0; j < columns; j++) {
+		        if (floors[i][j] != null) {
+		            sortedArray[index++] = floors[i][j];  // Add non-null values to the array
+		        }
+		    }
+		}
 		if(choice == 0) {
 			for (int i = 0; i < sortedArray.length - 1; i++) {
 		        int minIndex = i;
 		        for (int j = i + 1; j < sortedArray.length; j++) {
-		            if (sortedArray[j].year < sortedArray[minIndex].year) minIndex = j;
+		        	if(sortedArray[j] == null) {
+		        		if (sortedArray[j].year < sortedArray[minIndex].year) minIndex = j;
+		        	}
 		        }
 		        Car temp = sortedArray[minIndex];
 		        sortedArray[minIndex] = sortedArray[i];
@@ -164,7 +194,9 @@ public static class VendingMachine{
 			for (int i = 0; i < sortedArray.length - 1; i++) {
 		        int minIndex = i;
 		        for (int j = i + 1; j < sortedArray.length; j++) {
-		            if (sortedArray[j].price < sortedArray[minIndex].price) minIndex = j;
+		        	if(sortedArray[j] != null) {
+		        		if (sortedArray[j].price < sortedArray[minIndex].price) minIndex = j;
+		        	}
 		        }
 		        Car temp = sortedArray[minIndex];
 		        sortedArray[minIndex] = sortedArray[i];
