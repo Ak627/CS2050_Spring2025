@@ -130,9 +130,10 @@ class DoublyLinkedListL18
 				temp.next = current.next;
 				if(current.next != null) {
 					current.next.prev = temp;
-					current = null;
 				}
-			}
+				current = null;
+			}else {
+			current = current.next;}
 		}
 	}
 
